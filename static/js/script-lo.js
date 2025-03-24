@@ -13,12 +13,11 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     })
     .then(response => response.json())
     .then(data => {
-        if (data.error) {
-            alert(data.error); // Hiển thị lỗi nếu có
+        if (data.api_key) {
+            console.log("API Key nhận được:", data.api_key);
+            window.location.href = `/grammar-check/${data.api_key}`; // Chuyển trang với API Key
         } else {
-            alert(data.message); // Hiển thị thông báo đăng nhập thành công
-            localStorage.setItem("api_key", data.api_key); // Lưu API Key vào localStorage
-            window.location.href = "/grammar-check"; // Chuyển hướng
+            alert("Đăng nhập thất bại!");
         }
     })
     .catch(error => console.error("Lỗi:", error));

@@ -18,6 +18,8 @@ spell.word_frequency.load_text_file("vietnamese.txt")
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
+
+
 # Danh sách API Key hợp lệ (nếu bạn không lưu trong database)
 VALID_API_KEYS = {"test-api-key-123", "your-other-api-key"}
 
@@ -100,7 +102,7 @@ def login():
 
         return jsonify({
             "message": "Đăng nhập thành công!",
-            "redirect_to": "/grammar-check",
+            "redirect_to": f"/grammar-check/{temp_api_key}", 
             "api_key": temp_api_key  # Trả về API Key để lưu vào localStorage
         }), 200
 
@@ -110,7 +112,7 @@ def login():
 
 @app.route('/logout', methods=['GET','POST'])
 def logout():
-    session.pop('id', None)
+    session.pop('api_key', None)
     return render_template('/home/login.html'), 200
 
 @app.route('/change-password', methods=['GET', 'POST'])
@@ -143,30 +145,38 @@ def change_password():
         print("❌ LỖI TRONG FLASK:", e)
         return f"Lỗi server: {e}", 500
 
-@app.route('/grammar-check', methods=['GET','POST'])
-def grammar_check():
-    if request.method == 'GET':
-        return render_template('/home/index.html') 
+@app.route('/grammar-check/<api_key>', methods=['GET', 'POST'])
+def grammar_check(api_key):
     try:
-        data = request.get_json()
-        text = data.get("text", "")
+        # Kiểm tra API key có hợp lệ không
+        if not api_key or len(api_key) < 10:  # Giả sử API key hợp lệ có ít nhất 10 ký tự
+            return jsonify({"error": "API Key không hợp lệ"}), 403
+
+        if request.method == 'GET':
+            return render_template('/home/index.html')  # Đảm bảo file nằm trong thư mục `templates`
+
+        # Lấy dữ liệu từ request
+        data = request.get_json() or {}  # Tránh lỗi khi request không có JSON
+        text = data.get("text", "").strip()
 
         if not text:
             return jsonify({"error": "No text provided"}), 400
 
+        # Gọi mô hình Gemini
         model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(
             f"Hãy phát hiện và sửa lỗi chính tả, ngữ pháp trong văn bản sau."
             f" Hãy trình bày kết quả rõ ràng, xuống dòng từng ý:"
             f"\n1. **PHÁT HIỆN LỖI** (liệt kê từng lỗi 1 dòng).\n"
-            f"2. **ĐOẠN VĂN ĐÃ SỬA** (viết lại đoạn văn sau khi sửa).\n"
+            f"2. **VĂN BẢN ĐÃ SỬA** (viết lại đoạn văn sau khi sửa).\n"
             f"Văn bản cần kiểm tra: {text}"
-            )
+        )
 
         return jsonify({
     "VĂN BẢN GỐC": text.replace("\n", "<br>"),
     "VĂN BẢN ĐÃ SỬA": response.text.replace("\n", "<br>")
 })
+
     except Exception as e:
         return jsonify({"error": f"Lỗi server: {str(e)}"}), 500
 
