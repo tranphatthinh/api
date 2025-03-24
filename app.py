@@ -113,6 +113,36 @@ def logout():
     session.pop('id', None)
     return render_template('/home/login.html'), 200
 
+@app.route('/change-password', methods=['GET', 'POST'])
+def change_password():
+    try:
+        if request.method == 'POST':
+            email = request.form['email']
+            old_password = request.form['old_password']
+            new_password = request.form['new_password']
+            confirm_password = request.form['confirm_password']
+
+            print("Form data:", email, old_password, new_password, confirm_password)
+
+            user = apikeys.query.filter_by(user_email=email).first()
+            if not user:
+                return render_template('home/change-password.html', message='Tài khoản không tồn tại.')
+
+            if not bcrypt.check_password_hash(user.password, old_password):
+                return render_template('home/change-password.html', message='Mật khẩu cũ không đúng.')
+
+            if new_password != confirm_password:
+                return render_template('home/change-password.html', message='Mật khẩu xác nhận không khớp.')
+
+            user.password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+            db.session.commit()
+            return render_template('home/login.html')
+
+        return render_template('home/change-password.html')
+    except Exception as e:
+        print("❌ LỖI TRONG FLASK:", e)
+        return f"Lỗi server: {e}", 500
+
 @app.route('/grammar-check', methods=['GET','POST'])
 def grammar_check():
     if request.method == 'GET':
