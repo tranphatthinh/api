@@ -16,6 +16,7 @@
         <div id="index-btn-container">
             <button id="checkBtn" class="btn btn-primary">Kiểm tra</button>
             <button id="suggestBtn" class="btn btn-success">Gợi ý cải thiện</button>
+            <button id="backBtn" class="btn btn-secondary" style="display: none;">Quay lại</button>
         </div>
         <div class="text-end">
             <form action="{{ url_for('logout') }}" method="post" style="display: inline;">
@@ -95,14 +96,26 @@
                 document.getElementById("result").innerHTML = `
                     <strong>Gợi ý cải thiện:</strong> ${data["GỢI Ý CẢI THIỆN"]}
                 `;
+                document.getElementById("backBtn").style.display = "inline-block";
+                document.getElementById("checkBtn").style.display = "none";
+                document.getElementById("suggestBtn").style.display = "none";
             })
             .catch(err => {
                 document.getElementById("result").style.display = "block";
                 document.getElementById("result").innerHTML = `<strong>Lỗi:</strong> ${err.message}`;
             });
         });
-
+        document.getElementById("backBtn").addEventListener("click", () => {
+            // Ẩn kết quả và hiển thị lại giao diện nhập liệu
+            document.getElementById("result").style.display = "none";
+            document.getElementById("inputText").value = "";
+        
+            
+            document.getElementById("backBtn").style.display = "none";
+            document.getElementById("checkBtn").style.display = "inline-block";
+            document.getElementById("suggestBtn").style.display = "inline-block";
+        });
     </script>
-
+    
 </body>
 </html>
