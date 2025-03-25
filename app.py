@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app) 
 
 spell = SpellChecker()
-spell.word_frequency.load_text_file("vietnamese.txt") 
+spell.word_frequency.load_words("vietnamese.txt") 
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
