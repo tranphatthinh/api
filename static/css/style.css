@@ -1,0 +1,298 @@
+body {  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#login-container {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    width: 350px;
+}
+
+#loginForm input {
+    background: #e9f0ff;
+}
+
+#loginForm button {
+    background: #28a745;
+    color: white;
+}
+
+#links {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#links a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    display: block; 
+}
+h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#loginForm {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+#loginForm label {
+    color: white;
+}
+
+#loginForm input {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+p {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+p a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+#register-container {
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng đậm hơn */
+    text-align: center;
+    color: white;
+    width: 400px;
+    max-width: 90%;
+    border: 3px solid rgba(255, 255, 255, 0.1); /* Viền trắng nhẹ */
+}
+
+#registerForm {
+    background: #000; /* Nền đen giống form đăng nhập */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Hiệu ứng sáng nhẹ */
+}
+
+#registerForm label {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+#registerForm input {
+    background: #e9f0ff; /* Nền input màu xanh nhạt */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#registerForm button {
+    background-color: #28a745; /* Màu xanh lá */
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#registerForm button:hover {
+    background-color: #218838;
+}
+
+#links {
+    background: #222; /* Nền tối giống phần đăng nhập */
+    padding: 15px;
+    border-radius: 0 0 10px 10px;
+    margin-top: -10px;
+}
+
+#links a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#links a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    color: white;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+    font-size: 22px;
+}
+
+#change-password-container {
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    width: 350px;
+}
+
+#change-password-form input {
+    background: #e9f0ff;
+}
+
+#change-password-form button {
+    background: #007bff;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#change-password-form a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#change-password-form a:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+}
+
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+
+.card-form {
+    width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: white;
+}
+
+
+.exit-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#login-container, #register-container, #change-password-container {
+    background: rgba(0, 0, 0, 0.7);  /* Làm tối nền form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: white;
+    width: 350px;
+}
+
+.login-page {
+    background: url("/static/images/VP1.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.register-page {
+    background: url("/static/images/VP2.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.change-password-page {
+    background: url("/static/images/VP3.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+#index-container {
+    margin-top: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#index-form-control {
+    resize: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+}
+
+#index-form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#index-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#index-btn-primary, #index-btn-danger {
+    flex: 1;
+}
+
+#index-alert {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.index-page {
+    background: url("/static/images/VP4.jpg") no-repeat center center fixed;
+    background-size: cover;
+}

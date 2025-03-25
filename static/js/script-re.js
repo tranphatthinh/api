@@ -13,9 +13,6 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         const data = await response.json();
         
         if (response.ok) {
-            // Hiển thị API Key nếu cần
-            document.getElementById('apiKeyContainer').style.display = 'block';
-            document.getElementById('apiKey').textContent = data.api_key;
 
             // Thông báo thành công
             alert("Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập.");

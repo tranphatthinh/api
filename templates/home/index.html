@@ -7,21 +7,24 @@
     <script src="/static/js/auth.js"></script>
     <link rel="stylesheet" href="">
     <link  href="">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body class="p-4">
-
-    <h2 class="mb-4 text-center">Kiểm tra lỗi chính tả & ngữ pháp</h2>
-
-    <form action="{{ url_for('logout') }}" method="post" style="display: inline;">
-        <button type="submit" class="btn btn-danger">Đăng Xuất</button>
-    </form>
-
-    <textarea id="inputText" class="form-control mb-3" rows="6" placeholder="Nhập văn bản cần kiểm tra..."></textarea>
-
-    <button id="checkBtn" class="btn btn-primary">Kiểm tra</button>
-
-    <div id="result" class="alert alert-info mt-4" style="display: none;"></div>
-
+<body class="index-page">
+    <div id="index-container" class="container text-white">
+        <h2 class="text-center">Kiểm tra lỗi chính tả & ngữ pháp</h2>
+        <textarea id="inputText" class="form-control" rows="6" placeholder="Nhập văn bản cần kiểm tra..."></textarea>
+        <div id="index-btn-container">
+            <button id="checkBtn" class="btn btn-primary">Kiểm tra</button>
+            <button id="suggestBtn" class="btn btn-success">Gợi ý cải thiện</button>
+        </div>
+        <div class="text-end">
+            <form action="{{ url_for('logout') }}" method="post" style="display: inline;">
+                <button type="submit" id="index-btn-danger" class="btn btn-danger">Đăng Xuất</button>
+            </form>
+        </div>
+        <div id="result" class="alert alert-info mt-4" style="display: none;"></div>
+        <div id="suggestion" class="alert alert-warning mt-4" style="display: none;"></div>
+    </div>
     <script>
         // Lấy API Key từ LocalStorage
         const apiKey = localStorage.getItem("api_key");
