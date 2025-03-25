@@ -5,6 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Bạn chưa đăng nhập!");
         window.location.href = "/login";
     } else {
-        console.log("API Key của bạn:", apiKey);
+        console.log( apiKey);
     }
 });

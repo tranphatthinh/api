@@ -180,5 +180,34 @@ def grammar_check(api_key):
     except Exception as e:
         return jsonify({"error": f"Lỗi server: {str(e)}"}), 500
 
+@app.route('/suggest-improvement', methods=['GET', 'POST'])
+def suggest_improvement():
+    if request.method == 'GET':
+        return render_template('/home/index.html')  
+
+    try:
+        data = request.get_json()
+        text = data.get("text", "")
+
+        if not text:
+            return jsonify({"error": "No text provided"}), 400
+
+        model = genai.GenerativeModel("gemini-2.0-flash")
+        response = model.generate_content(
+            f"Hãy cải thiện cách diễn đạt của văn bản sau mà không làm thay đổi ý nghĩa."
+            f" Đưa ra phiên bản tốt hơn, sử dụng từ vựng phong phú và ngữ pháp tự nhiên hơn."
+            f"\n1. **GỢI Ý CẢI THIỆN** (viết lại đoạn văn bằng cách cải thiện từ ngữ, câu cú).\n"
+            f"\n2. **GIẢI THÍCH** (tại sao cách viết này tốt hơn).\n"
+            f"\nVăn bản cần cải thiện: {text}"
+        )
+
+        return jsonify({
+            "VĂN BẢN GỐC": text.replace("\n", "<br>"),
+            "GỢI Ý CẢI THIỆN": response.text.replace("\n", "<br>")
+        })
+    
+    except Exception as e:
+        return jsonify({"error": f"Lỗi server: {str(e)}"}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)

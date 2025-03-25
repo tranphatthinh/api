@@ -67,6 +67,40 @@
                 resultDiv.innerHTML = `<strong>Lỗi:</strong> Không thể kết nối đến server.`;
             });
         });
+        // Gợi ý cải thiện từ ngữ & câu
+        document.getElementById("suggestBtn").addEventListener("click", () => {
+            const text = document.getElementById("inputText").value.trim();
+        
+            if (!text) {
+                alert("Vui lòng nhập văn bản!");
+                return;
+            }
+        
+            fetch("http://127.0.0.1:5000/suggest-improvement", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.error); });
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = `
+                    <strong>Gợi ý cải thiện:</strong> ${data["GỢI Ý CẢI THIỆN"]}
+                `;
+            })
+            .catch(err => {
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = `<strong>Lỗi:</strong> ${err.message}`;
+            });
+        });
 
     </script>
 
