@@ -102,7 +102,7 @@ def login():
 
         return jsonify({
             "message": "Đăng nhập thành công!",
-            "redirect_to": f"/grammar-check/{temp_api_key}", 
+            "redirect_to": f"/g/{temp_api_key}", 
             "api_key": temp_api_key  # Trả về API Key để lưu vào localStorage
         }), 200
 
@@ -145,7 +145,7 @@ def change_password():
         print("❌ LỖI TRONG FLASK:", e)
         return f"Lỗi server: {e}", 500
 
-@app.route('/grammar-check/<api_key>', methods=['GET', 'POST'])
+@app.route('/g/<api_key>', methods=['GET', 'POST'])
 def grammar_check(api_key):
     try:
         # Kiểm tra API key có hợp lệ không

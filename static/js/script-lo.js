@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     .then(data => {
         if (data.api_key) {
             console.log("API Key nhận được:", data.api_key);
-            window.location.href = `/grammar-check/${data.api_key}`; // Chuyển trang với API Key
+            window.location.href = `/g/${data.api_key}`; // Chuyển trang với API Key
         } else {
             alert("Đăng nhập thất bại!");
         }
