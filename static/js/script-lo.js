@@ -13,11 +13,16 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
     })
     .then(response => response.json())
     .then(data => {
-        if (data.api_key) {
-            console.log("API Key nhận được:", data.api_key);
-            window.location.href = `/g/${data.api_key}`; // Chuyển trang với API Key
+        if (data.access_token) {
+            console.log("API Key nhận được:", data.access_token);
+            
+            // 👉 Lưu token vào localStorage để dùng trong request tiếp theo
+            localStorage.setItem("access_token", data.access_token);
+
+            // 👉 Chuyển hướng sang trang kiểm tra ngữ pháp
+            window.location.href = "/check-grammar";
         } else {
-            alert("Đăng nhập thất bại!");
+            alert("Đăng nhập thất bại! Vui lòng kiểm tra lại email và mật khẩu.");
         }
     })
     .catch(error => console.error("Lỗi:", error));
