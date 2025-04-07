@@ -1,3 +1,4 @@
+CREATE DATABASE managers;
 CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
     user_email VARCHAR(255) UNIQUE NOT NULL,
