@@ -1,0 +1,8 @@
+pip install Flask
+pip install Flask-Bcrypt
+pip install Flask-SQLAlchemy
+pip install Flask-Cors
+pip install PyJWT
+pip install python-dotenv
+pip install google-generativeai
+pip install pyspellchecker
